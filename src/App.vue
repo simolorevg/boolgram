@@ -51,18 +51,31 @@ export default {
       <div class="posts">
 
         <!--SINGLE POST-->
-        <div class="post">
-          <div class="post-user">
-            <div class="post-created">
-              <img src="" alt="Profile"> <span>username</span>
+        <div v-for="(post, index) in posts" :key="index">
+          <div class="post">
+            <div class="post-user">
+              <div class="post-created">
+                <img :src="post.profile_picture" alt="Profile"> <span>{{ post.profile_name }}</span>
+              </div>
+              options
             </div>
-            options
-          </div>
-          <div class="post-img">
-            <img src="" alt="Post Image">
-          </div>
-          <div class="post-content">
+            <div class="post-img">
+              <img :src="post.post_image" alt="Post Image">
+            </div>
+            <div class="post-content">
+              <div>
 
+              </div>
+              {{ post.post_text }}
+              <div class="post-comments">
+                <p>Comments</p>
+                <ul>
+                  <li v-for="(item, index) in post.comments" :key="index">
+                    <span class="user-comment">{{ item.username }}</span> {{ item.text }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         <!--/SINGLE POST-->
@@ -199,6 +212,7 @@ export default {
       .post {
         max-width: 70%;
         margin: 0 auto;
+        margin-bottom: 10px;
         height: 500px;
         display: flex;
         flex-direction: column;
@@ -238,6 +252,20 @@ export default {
 
         .post-content {
           flex-grow: 1;
+
+          .post-comments ul {
+            list-style-type: none;
+            margin-top: 10px;
+
+            .user-comment {
+              font-weight: bold;
+              margin-right: 30px;
+            }
+          }
+
+          .post-comments ul li {
+            margin-bottom: 10px;
+          }
         }
       }
     }
