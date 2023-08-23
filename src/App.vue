@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<template class="position">
+<template>
   <div class="container">
     <div class="search-bar">
       <img src="src\imgs\logo.png" alt="logo">
@@ -57,20 +57,20 @@ export default {
               <div class="post-created">
                 <img :src="post.profile_picture" alt="Profile"> <span>{{ post.profile_name }}</span>
               </div>
-              options
+              <i class="fa-solid fa-ellipsis"></i>
             </div>
             <div class="post-img">
               <img :src="post.post_image" alt="Post Image">
             </div>
             <div class="post-content">
-              <div>
-
+              <div class="post-icons">
+                <i class="fa-regular fa-heart heart"></i>
+                <i class="fa-regular fa-paper-plane"></i>
               </div>
-              {{ post.post_text }}
               <div class="post-comments">
                 <p>Comments</p>
                 <ul>
-                  <li v-for="(item, index) in post.comments" :key="index">
+                  <li v-for="(item, index) in post.comments" :key="index" v-if="index < 4">
                     <span class="user-comment">{{ item.username }}</span> {{ item.text }}
                   </li>
                 </ul>
@@ -226,13 +226,25 @@ export default {
           justify-content: space-between;
           align-items: center;
 
+          i {
+            font-size: 2em;
+            margin-right: 5px;
+            cursor: pointer;
+          }
+
+          i:hover {
+            color: blue;
+          }
+
           .post-created {
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 5px;
 
             img {
               width: 40px;
+              height: 40px;
               border: 1px solid black;
               border-radius: 50%;
               margin-left: 5px;
@@ -246,12 +258,28 @@ export default {
 
           img {
             width: 544px;
-            height: 300px;
+            height: 260px;
           }
         }
 
         .post-content {
           flex-grow: 1;
+          padding: 5px;
+
+          .post-icons {
+            font-size: 1.4em;
+            letter-spacing: 1em;
+
+            .heart:hover {
+              color: red;
+            }
+          }
+
+          .post-comments {
+            max-height: 150px;
+            overflow: hidden;
+
+          }
 
           .post-comments ul {
             list-style-type: none;
@@ -272,7 +300,6 @@ export default {
 
     .direct {
       padding: 5px;
-      border: 1px solid grey;
       border-radius: 5px;
       flex-grow: 1;
 
