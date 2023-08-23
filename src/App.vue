@@ -1,5 +1,21 @@
-<script setup>
-
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      profiles: {},
+      posts: {}
+    };
+  },
+  mounted() {
+    axios.get('https://flynn.boolean.careers/exercises/api/boolgram/profiles').then((resp) => {
+      this.profiles = resp.data;
+    });
+    axios.get('https://flynn.boolean.careers/exercises/api/boolgram/posts').then((resp) => {
+      this.posts = resp.data;
+    });
+  }
+}
 </script>
 
 <template class="position">
@@ -63,14 +79,17 @@
           </div>
 
           <!--ADVICES PROFILES LIST-->
-          <div class="advice-profile">
-            <div class="advice-img">
-              image
+          <div v-for="(item, index) in profiles" :key="index">
+
+            <div class="advice-profile">
+              <div class="advice-img">
+                <img :src="item.profile_picture" alt="">
+              </div>
+              <div class="advice-username">
+                {{ item.profile_name }}
+              </div>
+              <div class="btn-follow">Follow</div>
             </div>
-            <div class="advice-username">
-              username
-            </div>
-            <div class="btn-follow">Follow</div>
           </div>
           <!--/ADVICES PROFILES LIST-->
         </div>
@@ -253,6 +272,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-bottom: 10px;
 
           .advice-img {
             width: 20%;
@@ -262,6 +282,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            img {
+              width: 100%;
+              height: 100%;
+              border: 1px solid red;
+              border-radius: 50%;
+            }
           }
 
           .advice-username {
