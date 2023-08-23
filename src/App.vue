@@ -38,14 +38,12 @@
         <div class="post">
           <div class="post-user">
             <div class="post-created">
-              <img src="src\imgs\Classe 90.jpg" alt="Profile"> <span>username</span>
+              <img src="" alt="Profile"> <span>username</span>
             </div>
             options
           </div>
           <div class="post-img">
-            <img
-              src="https://tmssl.akamaized.net/images/foto/galerie/olivier-giroud-ac-mailand-2022-1644135835-79775.jpg?lm=1644135848"
-              alt="">
+            <img src="" alt="Post Image">
           </div>
           <div class="post-content">
 
@@ -100,8 +98,7 @@
     width: 100%;
     height: 100px;
     background-color: white;
-    border: 1px solid grey;
-    border-radius: 10px;
+    border-bottom: 1px solid gray;
     z-index: 999;
     position: fixed;
     top: 0;
@@ -109,7 +106,7 @@
     padding: 10px;
 
     img {
-      width: 80px;
+      width: 150px;
       height: 80px;
     }
   }
