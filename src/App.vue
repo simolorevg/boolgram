@@ -22,6 +22,11 @@ export default {
   <div class="container">
     <div class="search-bar">
       <img src="src\imgs\logo.png" alt="logo">
+      <div class="menu-right">
+        <i class="fa-solid fa-house"></i>
+        <i class="fa-solid fa-heart"></i>
+        <img src="src\imgs\Classe 90.jpg" alt="profile">
+      </div>
     </div>
     <div class="top-container">
       <div class="stories">
@@ -147,10 +152,31 @@ export default {
     top: 0;
     left: 0;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     img {
       width: 150px;
       height: 80px;
+    }
+
+    .menu-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 50%;
+      }
+
+      i {
+        font-size: 2em;
+      }
     }
   }
 
