@@ -26,19 +26,21 @@ export default {
     <div class="top-container">
       <div class="stories">
         <div class="stories-container">
-          <div class="story">
-            <div class="story-profile">
-
-            </div>
-            <div class="story-user">
-              username
+          <div v-for="(profile, index) in profiles" :key="index">
+            <div class="story">
+              <div class="story-profile">
+                <img :src="profile.profile_picture" alt="profile">
+              </div>
+              <div class="story-user">
+                {{ profile.profile_name }}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="profile">
         <div class="logo-user">
-
+          <img src="src\imgs\Classe 90.jpg" alt="profilephoto">
         </div>
         <div class="username">
           Mario Rossi
@@ -67,6 +69,12 @@ export default {
                 <i class="fa-regular fa-heart heart"></i>
                 <i class="fa-regular fa-paper-plane"></i>
               </div>
+              <div class="likes">
+                <img :src="post.likes[0].profile_picture" alt="userphotolike">
+                Piace a
+                <p style="font-weight: bold;">{{ post.likes[0].username }}</p>
+                e altri utenti
+              </div>
               <div class="post-comments">
                 <p>Comments</p>
                 <ul>
@@ -74,6 +82,9 @@ export default {
                     <span class="user-comment">{{ item.username }}</span> {{ item.text }}
                   </li>
                 </ul>
+              </div>
+              <div class="post-date">
+                Pubblicato il: {{ post.date.date.substr(0, 10) }}
               </div>
             </div>
           </div>
@@ -165,19 +176,29 @@ export default {
         padding: 5px;
 
         .story {
-          width: 80px;
-          height: 80px;
+          width: 70px;
+          height: 70px;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
 
+          .story-user {
+            font-size: 0.6em;
+          }
+
           .story-profile {
             width: 70%;
             height: 70%;
             margin: 0 auto;
-            background-color: red;
-            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              width: 49px;
+              height: 49px;
+              border: 1px solid red;
+              border-radius: 50%;
+            }
           }
         }
       }
@@ -193,9 +214,15 @@ export default {
       .logo-user {
         width: 80px;
         height: 80px;
-        background-color: red;
         border-radius: 50%;
         margin-right: 10px;
+
+        img {
+          width: 80px;
+          height: 80px;
+          border: 1px solid red;
+          border-radius: 50%;
+        }
       }
     }
   }
@@ -213,7 +240,7 @@ export default {
         max-width: 70%;
         margin: 0 auto;
         margin-bottom: 10px;
-        height: 500px;
+        height: 700px;
         display: flex;
         flex-direction: column;
         border: 1px solid grey;
@@ -245,7 +272,6 @@ export default {
             img {
               width: 40px;
               height: 40px;
-              border: 1px solid black;
               border-radius: 50%;
               margin-left: 5px;
             }
@@ -258,13 +284,21 @@ export default {
 
           img {
             width: 544px;
-            height: 260px;
+            height: 300px;
           }
         }
 
         .post-content {
           flex-grow: 1;
           padding: 5px;
+
+          .post-date {
+            color: grey;
+            font-weight: bold;
+            height: 75px;
+            display: flex;
+            align-items: center;
+          }
 
           .post-icons {
             font-size: 1.4em;
@@ -275,10 +309,23 @@ export default {
             }
           }
 
-          .post-comments {
-            max-height: 150px;
-            overflow: hidden;
+          .likes {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+            }
+          }
+
+          .post-comments {
+            margin-top: 10px;
+            max-height: 174px;
+            overflow: hidden;
           }
 
           .post-comments ul {
