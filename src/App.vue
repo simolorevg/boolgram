@@ -37,8 +37,8 @@
         <!--SINGLE POST-->
         <div class="post">
           <div class="post-user">
-            <div>
-              <img src="" alt="Profile"> <span>username</span>
+            <div class="post-created">
+              <img src="src\imgs\Classe 90.jpg" alt="Profile"> <span>username</span>
             </div>
             options
           </div>
@@ -58,7 +58,24 @@
 
       <!--DIRECT CONTAINER-->
       <div class="direct">
-        All messages
+        <div class="direct-column">
+          <div class="advice">
+            <p>For you</p>
+            <div class="advice-btn">See More</div>
+          </div>
+
+          <!--ADVICES PROFILES LIST-->
+          <div class="advice-profile">
+            <div class="advice-img">
+              image
+            </div>
+            <div class="advice-username">
+              username
+            </div>
+            <div class="btn-follow">Follow</div>
+          </div>
+          <!--/ADVICES PROFILES LIST-->
+        </div>
       </div>
       <!--/DIRECT CONTAINER-->
     </div>
@@ -161,6 +178,7 @@
     .posts {
       width: 60%;
       padding: 10px;
+      margin-top: 50px;
 
       .post {
         max-width: 70%;
@@ -177,6 +195,19 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+
+          .post-created {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+              width: 40px;
+              border: 1px solid black;
+              border-radius: 50%;
+              margin-left: 5px;
+            }
+          }
         }
 
         .post-img {
@@ -200,6 +231,62 @@
       border: 1px solid grey;
       border-radius: 5px;
       flex-grow: 1;
+
+      .direct-column {
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid grey;
+        padding: 5px;
+        border-radius: 5px;
+
+        .advice {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+
+          .advice-btn {
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+
+        .advice-profile {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .advice-img {
+            width: 20%;
+            height: 80px;
+            border-radius: 50%;
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .advice-username {
+            font-weight: bold;
+          }
+
+          .btn-follow {
+            width: 20%;
+            height: 30px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: blue;
+          }
+
+          .btn-follow:hover {
+            color: black;
+          }
+        }
+      }
     }
   }
 }
