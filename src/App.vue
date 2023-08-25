@@ -4,24 +4,38 @@ export default {
   data() {
     return {
       profiles: {},
-      posts: {}
+      posts: {},
+      loaderPost: false,
+      loaderProfile: false
     };
   },
   mounted() {
     axios.get('https://flynn.boolean.careers/exercises/api/boolgram/profiles').then((resp) => {
       this.profiles = resp.data;
+      this.loaderProfile = true;
     });
     axios.get('https://flynn.boolean.careers/exercises/api/boolgram/posts').then((resp) => {
       this.posts = resp.data;
+      this.loaderPost = true;
     });
   }
 }
 </script>
 
 <template>
-  <div class="container">
+  <div v-if="!loaderPost" class="loader">
+    Caricamento in corso
+    <img src="src\imgs\spinner.gif" alt="Loader">
+  </div>
+  <div v-else class="container">
     <div class="search-bar">
       <img src="src\imgs\logo.png" alt="logo">
+      <div class="searching-bar">
+        <input type="text" placeholder="Cerca">
+        <div class="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
       <div class="menu-right">
         <i class="fa-solid fa-house"></i>
         <i class="fa-solid fa-heart"></i>
@@ -56,7 +70,6 @@ export default {
     <div class="bottom-container">
       <!--POST CONTAINER-->
       <div class="posts">
-
         <!--SINGLE POST-->
         <div v-for="(post, index) in posts" :key="index">
           <div class="post">
@@ -75,18 +88,23 @@ export default {
                 <i class="fa-regular fa-paper-plane"></i>
               </div>
               <div class="likes">
-                <img :src="post.likes[0].profile_picture" alt="userphotolike">
+                <img :src="post.likes.length > 0 ? post.likes[0].profile_picture : ''" alt="userphotolike">
                 Piace a
-                <p style="font-weight: bold;">{{ post.likes[0].username }}</p>
+                <p v-if="post.likes.length > 0" style="font-weight: bold;">{{ post.likes[0].username }}</p>
                 e altri utenti
               </div>
               <div class="post-comments">
-                <p>Comments</p>
-                <ul>
-                  <li v-for="(item, index) in post.comments" :key="index" v-if="index < 4">
-                    <span class="user-comment">{{ item.username }}</span> {{ item.text }}
-                  </li>
-                </ul>
+                <div v-if="post.comments.length == 0">
+                  No comments here...
+                </div>
+                <div v-else>
+                  <p>Comments</p>
+                  <ul>
+                    <li v-for="(item, index) in post.comments" :key="index" v-if="index < 4">
+                      <span class="user-comment">{{ item.username }}</span> {{ item.text }}
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="post-date">
                 Pubblicato il: {{ post.date.date.substr(0, 10) }}
@@ -135,6 +153,16 @@ export default {
   box-sizing: border-box;
 }
 
+.loader {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 3em;
+}
+
 .container {
   width: 100%;
   height: 100vh;
@@ -157,8 +185,30 @@ export default {
     justify-content: space-between;
 
     img {
-      width: 150px;
+      width: 200px;
       height: 80px;
+    }
+
+    .searching-bar {
+      display: flex;
+
+      flex-grow: 1;
+      justify-content: center;
+
+      .search-icon {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid grey;
+        cursor: pointer;
+      }
+
+      .search-icon:hover {
+        background-color: grey;
+        color: white;
+      }
     }
 
     .menu-right {
