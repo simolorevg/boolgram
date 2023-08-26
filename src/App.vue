@@ -234,7 +234,7 @@ export default {
   .top-container {
     width: 100%;
     display: flex;
-    margin-top: 100px;
+    margin-top: 110px;
 
     .stories {
       width: 60%;
