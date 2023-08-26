@@ -174,7 +174,8 @@ export default {
     width: 100%;
     height: 100px;
     background-color: white;
-    border-bottom: 1px solid gray;
+    box-shadow: 11px 11px 22px #bcbcbc,
+      -11px -11px 22px #ffffff;
     z-index: 999;
     position: fixed;
     top: 0;
@@ -242,8 +243,9 @@ export default {
       align-items: center;
 
       .stories-container {
-        border: 1px solid grey;
-        border-radius: 5px;
+        border-radius: 20px;
+        box-shadow: 9px 9px 54px #777777,
+          -9px -9px 54px #ffffff;
         width: 70%;
         height: 100%;
         margin: 0 auto;
@@ -285,7 +287,9 @@ export default {
       align-items: center;
       flex-grow: 1;
       padding: 5px;
-      border: 1px solid black;
+      border-radius: 20px;
+      box-shadow: 9px 9px 54px #777777,
+        -9px -9px 54px #ffffff;
 
       .logo-user {
         width: 80px;
@@ -315,12 +319,13 @@ export default {
       .post {
         max-width: 70%;
         margin: 0 auto;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         height: 700px;
         display: flex;
         flex-direction: column;
-        border: 1px solid grey;
-        border-radius: 5px;
+        border-radius: 20px;
+        box-shadow: 9px 9px 54px #777777,
+          -9px -9px 54px #ffffff;
 
         .post-user {
           width: 100%;
@@ -429,9 +434,11 @@ export default {
       .direct-column {
         width: 80%;
         margin: 0 auto;
-        border: 1px solid grey;
+        margin-top: 50px;
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 20px;
+        box-shadow: 9px 9px 54px #777777,
+          -9px -9px 54px #ffffff;
 
         .advice {
           width: 100%;
